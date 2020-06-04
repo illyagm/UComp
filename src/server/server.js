@@ -38,7 +38,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var bodyParser = __importStar(require("body-parser"));
 var express_fileupload_1 = __importDefault(require("express-fileupload"));
 var controllers = __importStar(require("../controllers"));
-var mongoose = __importStar(require("mongoose"));
+var mongoose_1 = __importDefault(require("mongoose"));
 var core_1 = require("@overnightjs/core");
 var logger_1 = require("@overnightjs/logger");
 var Startup = /** @class */ (function (_super) {
@@ -46,8 +46,8 @@ var Startup = /** @class */ (function (_super) {
     function Startup() {
         var _this = _super.call(this, true) || this;
         _this.SERVER_STARTED = 'Server started on port: ';
-        mongoose.connect('mongodb://localhost:27017/UComparator', { useNewUrlParser: true, useUnifiedTopology: true });
-        mongoose.set('useFindAndModify', false);
+        mongoose_1.default.connect('mongodb://localhost:27017/UComparator', { useNewUrlParser: true, useUnifiedTopology: true });
+        mongoose_1.default.set('useFindAndModify', false);
         _this.app.use(express_fileupload_1.default({
             createParentPath: true,
         }));

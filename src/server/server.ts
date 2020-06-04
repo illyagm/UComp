@@ -1,7 +1,7 @@
 import * as bodyParser from 'body-parser';
 import fileUpload from 'express-fileupload';
 import * as controllers from '../controllers';
-import * as mongoose from 'mongoose';
+import mongoose from 'mongoose';
 import { Server } from '@overnightjs/core';
 import { Logger } from '@overnightjs/logger';
 
@@ -13,7 +13,6 @@ class Startup extends Server {
         super(true);
         mongoose.connect('mongodb://localhost:27017/UComparator', { useNewUrlParser: true, useUnifiedTopology: true });
         mongoose.set('useFindAndModify', false);
-        
         this.app.use(fileUpload({
             createParentPath: true,
         }));
