@@ -5,20 +5,18 @@ export interface IPlatform extends Document {
     name: String;
     url: String;
     icon: String;
-    timestamps: {
-        createdAt: 'created_at';
-        updatedAt: 'updated_at';
-    }
+    is_active: Boolean;
+    timestamps: true;
 }
 
-const PlatformSchema : Schema = new Schema ({
+const PlatformSchema: Schema = new Schema({
     id: String,
     name: String,
     url: String,
-    timestamps: {         
-        createdAt: 'created_at',
-        updatedAt: 'updated_at'
-    }
-});
+    is_active: Boolean, 
+},
+    {
+        timestamps: true
+    });
 
-export default model<IPlatform>("Platform", PlatformSchema);
+export default model<IPlatform>("Platform", PlatformSchema); 

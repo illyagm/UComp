@@ -41,42 +41,77 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PlatformController = void 0;
 var core_1 = require("@overnightjs/core");
+var PlatformsService_1 = __importDefault(require("../../services/platformService/PlatformsService"));
 //insert iplatform and platformservice
 var PlatformController = /** @class */ (function () {
     function PlatformController() {
+        this.platformsService = new PlatformsService_1.default();
     }
     PlatformController.prototype.getAllAlbums = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
+            var result;
             return __generator(this, function (_a) {
-                res.send('all platforms');
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.platformsService.getPlatforms()];
+                    case 1:
+                        result = _a.sent();
+                        res.send(result);
+                        return [2 /*return*/];
+                }
             });
         });
     };
     PlatformController.prototype.insertPlatform = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                res.send('insert platform');
-                return [2 /*return*/];
+            var _a, name, url, icon, result;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = req.body, name = _a.name, url = _a.url, icon = _a.icon;
+                        return [4 /*yield*/, this.platformsService.insertPlatform(name, url, icon)];
+                    case 1:
+                        result = _b.sent();
+                        res.send(result);
+                        return [2 /*return*/];
+                }
             });
         });
     };
     PlatformController.prototype.editPlatform = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                res.send('edit platform');
-                return [2 /*return*/];
+            var _a, platformId, name, url, icon, result;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = req.body, platformId = _a.platformId, name = _a.name, url = _a.url, icon = _a.icon;
+                        return [4 /*yield*/, this.platformsService.updatePlatform(platformId, name, url, icon)];
+                    case 1:
+                        result = _b.sent();
+                        res.send(result);
+                        return [2 /*return*/];
+                }
             });
         });
     };
     PlatformController.prototype.deletePlatform = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
+            var platformId, result;
             return __generator(this, function (_a) {
-                res.send('delete platform');
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0:
+                        platformId = req.body.platformId;
+                        return [4 /*yield*/, this.platformsService.deletePlatform(platformId)];
+                    case 1:
+                        result = _a.sent();
+                        res.send(result);
+                        return [2 /*return*/];
+                }
             });
         });
     };

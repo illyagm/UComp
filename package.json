@@ -2,10 +2,12 @@
   "name": "ucomp",
   "version": "1.0.0",
   "description": "Universal comparator",
-  "main": "index.js",
+  "main": "start.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "dev": "tsc -w",
+    "watch-dev": "nodemon -w src start.js"
   },
   "author": "Illya Gordus",
   "license": "ISC",
@@ -17,6 +19,7 @@
     "express": "^4.17.1",
     "express-fileupload": "^1.1.7-alpha.3",
     "mongoose": "^5.9.17",
+    "nodemon": "^2.0.4",
     "typescript": "^3.9.3"
   },
   "devDependencies": {
