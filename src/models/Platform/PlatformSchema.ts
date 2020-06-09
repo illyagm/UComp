@@ -4,7 +4,6 @@ export interface IPlatform extends Document {
     id: String;
     name: String;
     url: String;
-    icon: String;
     is_active: Boolean;
     timestamps: true;
 }

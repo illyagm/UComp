@@ -7,11 +7,11 @@ export default class PlatformsService implements IPlatformsService {
     public async getPlatforms(): Promise<any> {
         return await this.platformsRepository.getPlatforms();
     }
-    public async insertPlatform(name: String, url: String, icon: String): Promise<any> {
-        return await this.platformsRepository.insertPlatform(name, url, icon);
+    public async insertPlatform(name: String, url: String): Promise<any> {
+        return await this.platformsRepository.insertPlatform(name, url);
     }
-    public async updatePlatform(platformId: String, name: String, url: String, icon: String): Promise<any> {
-        return await this.platformsRepository.updatePlatform(platformId, name, url, icon);
+    public async updatePlatform(platformId: String, name: String, url: String): Promise<any> {
+        return await this.platformsRepository.updatePlatform(platformId, name, url);
     }
     public async deletePlatform(platformId: String): Promise<any> {
         return await this.platformsRepository.deletePlatform(platformId);

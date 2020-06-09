@@ -17,14 +17,14 @@ export class PlatformController {
     }   
     @Post('insertPlatform')
     private async insertPlatform(req: Request, res: Response) {
-       let { name, url, icon } = req.body;
-       let result = await this.platformsService.insertPlatform(name, url, icon);
+       let { name, url } = req.body;
+       let result = await this.platformsService.insertPlatform(name, url);
        res.send(result);
     }  
     @Post('editPlatform')
     private async editPlatform(req: Request, res: Response) {
-        let { platformId, name, url, icon } = req.body;
-        let result = await this.platformsService.updatePlatform(platformId, name, url, icon);
+        let { platformId, name, url } = req.body;
+        let result = await this.platformsService.updatePlatform(platformId, name, url);
         res.send(result);
     }  
     @Post('deletePlatform')

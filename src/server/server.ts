@@ -4,7 +4,7 @@ import * as controllers from '../controllers';
 import mongoose from 'mongoose';
 import { Server } from '@overnightjs/core';
 import { Logger } from '@overnightjs/logger';
-
+import cors from 'cors';
 class Startup extends Server {
 
     private readonly SERVER_STARTED = 'Server started on port: ';
@@ -18,6 +18,7 @@ class Startup extends Server {
         }));
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: true }));
+        this.app.use(cors());
         this.setupControllers();
     }
 

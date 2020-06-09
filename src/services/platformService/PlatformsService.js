@@ -54,21 +54,21 @@ var PlatformsService = /** @class */ (function () {
             });
         });
     };
-    PlatformsService.prototype.insertPlatform = function (name, url, icon) {
+    PlatformsService.prototype.insertPlatform = function (name, url) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.platformsRepository.insertPlatform(name, url, icon)];
+                    case 0: return [4 /*yield*/, this.platformsRepository.insertPlatform(name, url)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });
     };
-    PlatformsService.prototype.updatePlatform = function (platformId, name, url, icon) {
+    PlatformsService.prototype.updatePlatform = function (platformId, name, url) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.platformsRepository.updatePlatform(platformId, name, url, icon)];
+                    case 0: return [4 /*yield*/, this.platformsRepository.updatePlatform(platformId, name, url)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });

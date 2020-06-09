@@ -53,7 +53,7 @@ var PlatformsRepository = /** @class */ (function () {
             });
         });
     };
-    PlatformsRepository.prototype.insertPlatform = function (name, url, icon) {
+    PlatformsRepository.prototype.insertPlatform = function (name, url) {
         return __awaiter(this, void 0, void 0, function () {
             var checkExistancePlatform;
             return __generator(this, function (_a) {
@@ -68,7 +68,6 @@ var PlatformsRepository = /** @class */ (function () {
                                 id: '_' + Math.random().toString(36).substr(2, 9),
                                 name: name,
                                 url: url,
-                                icon: [icon],
                                 is_active: true
                             }])];
                     case 3: return [2 /*return*/, _a.sent()];
@@ -76,7 +75,7 @@ var PlatformsRepository = /** @class */ (function () {
             });
         });
     };
-    PlatformsRepository.prototype.updatePlatform = function (platformId, name, url, icon) {
+    PlatformsRepository.prototype.updatePlatform = function (platformId, name, url) {
         return __awaiter(this, void 0, void 0, function () {
             var filter, update;
             return __generator(this, function (_a) {
@@ -87,8 +86,7 @@ var PlatformsRepository = /** @class */ (function () {
                         };
                         update = {
                             name: name,
-                            url: url,
-                            icon: icon
+                            url: url
                         };
                         return [4 /*yield*/, PlatformSchema_1.default.findOneAndUpdate(filter, update, {
                                 new: true

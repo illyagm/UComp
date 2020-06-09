@@ -69,12 +69,12 @@ var PlatformController = /** @class */ (function () {
     };
     PlatformController.prototype.insertPlatform = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, name, url, icon, result;
+            var _a, name, url, result;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        _a = req.body, name = _a.name, url = _a.url, icon = _a.icon;
-                        return [4 /*yield*/, this.platformsService.insertPlatform(name, url, icon)];
+                        _a = req.body, name = _a.name, url = _a.url;
+                        return [4 /*yield*/, this.platformsService.insertPlatform(name, url)];
                     case 1:
                         result = _b.sent();
                         res.send(result);
@@ -85,12 +85,12 @@ var PlatformController = /** @class */ (function () {
     };
     PlatformController.prototype.editPlatform = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, platformId, name, url, icon, result;
+            var _a, platformId, name, url, result;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        _a = req.body, platformId = _a.platformId, name = _a.name, url = _a.url, icon = _a.icon;
-                        return [4 /*yield*/, this.platformsService.updatePlatform(platformId, name, url, icon)];
+                        _a = req.body, platformId = _a.platformId, name = _a.name, url = _a.url;
+                        return [4 /*yield*/, this.platformsService.updatePlatform(platformId, name, url)];
                     case 1:
                         result = _b.sent();
                         res.send(result);

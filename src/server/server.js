@@ -41,6 +41,7 @@ var controllers = __importStar(require("../controllers"));
 var mongoose_1 = __importDefault(require("mongoose"));
 var core_1 = require("@overnightjs/core");
 var logger_1 = require("@overnightjs/logger");
+var cors_1 = __importDefault(require("cors"));
 var Startup = /** @class */ (function (_super) {
     __extends(Startup, _super);
     function Startup() {
@@ -53,6 +54,7 @@ var Startup = /** @class */ (function (_super) {
         }));
         _this.app.use(bodyParser.json());
         _this.app.use(bodyParser.urlencoded({ extended: true }));
+        _this.app.use(cors_1.default());
         _this.setupControllers();
         return _this;
     }
