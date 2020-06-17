@@ -3,7 +3,7 @@ import got from 'got';
 import cheerio from 'cheerio';
 export default class ParseRepository implements IParseRepository {
 
-    public async getWebsiteDataHTML(urlWebsite: String): Promise<any> {
+    public async parseAmazon(urlWebsite: String): Promise<any> {
         const fetchDataWebsite = async (url: String) => {
             try {
                 const result = await got.get('' + urlWebsite);

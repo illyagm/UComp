@@ -44,7 +44,7 @@ var cheerio_1 = __importDefault(require("cheerio"));
 var ParseRepository = /** @class */ (function () {
     function ParseRepository() {
     }
-    ParseRepository.prototype.getWebsiteDataHTML = function (urlWebsite) {
+    ParseRepository.prototype.parseAmazon = function (urlWebsite) {
         return __awaiter(this, void 0, void 0, function () {
             var fetchDataWebsite, html, $_1, productsMap, error_1;
             var _this = this;
