@@ -53,7 +53,7 @@ var PlatformController = /** @class */ (function () {
     function PlatformController() {
         this.platformsService = new PlatformsService_1.default();
     }
-    PlatformController.prototype.getAllAlbums = function (req, res) {
+    PlatformController.prototype.getAllPlatforms = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var result;
             return __generator(this, function (_a) {
@@ -67,14 +67,31 @@ var PlatformController = /** @class */ (function () {
             });
         });
     };
+    PlatformController.prototype.getPlatformsByCategory = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var category, result;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        category = req.body.category;
+                        return [4 /*yield*/, this.platformsService.getPlatformsByCategory(category)];
+                    case 1:
+                        result = _a.sent();
+                        console.log(category);
+                        res.send(result);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     PlatformController.prototype.insertPlatform = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, name, url, result;
+            var _a, name, url, category, result;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        _a = req.body, name = _a.name, url = _a.url;
-                        return [4 /*yield*/, this.platformsService.insertPlatform(name, url)];
+                        _a = req.body, name = _a.name, url = _a.url, category = _a.category;
+                        return [4 /*yield*/, this.platformsService.insertPlatform(name, url, category)];
                     case 1:
                         result = _b.sent();
                         res.send(result);
@@ -85,12 +102,13 @@ var PlatformController = /** @class */ (function () {
     };
     PlatformController.prototype.editPlatform = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, platformId, name, url, result;
+            var _a, platformId, name, url, category, result;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        _a = req.body, platformId = _a.platformId, name = _a.name, url = _a.url;
-                        return [4 /*yield*/, this.platformsService.updatePlatform(platformId, name, url)];
+                        _a = req.body, platformId = _a.platformId, name = _a.name, url = _a.url, category = _a.category;
+                        console.log(' ' + platformId + '\n ' + name + '\n en el controller' + url + '\n ' + category);
+                        return [4 /*yield*/, this.platformsService.updatePlatform(platformId, name, url, category)];
                     case 1:
                         result = _b.sent();
                         res.send(result);
@@ -117,7 +135,10 @@ var PlatformController = /** @class */ (function () {
     };
     __decorate([
         core_1.Get('getPlatforms')
-    ], PlatformController.prototype, "getAllAlbums", null);
+    ], PlatformController.prototype, "getAllPlatforms", null);
+    __decorate([
+        core_1.Post('getPlatformsByCategory')
+    ], PlatformController.prototype, "getPlatformsByCategory", null);
     __decorate([
         core_1.Post('insertPlatform')
     ], PlatformController.prototype, "insertPlatform", null);

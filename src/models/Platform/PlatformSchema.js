@@ -5,27 +5,28 @@ var PlatformSchema = new mongoose_1.Schema({
     id: String,
     name: String,
     url: String,
-    category: {
-        type: [String],
-        enum: [
-            'electronica',
-            'software',
-            'videojuegos',
-            'juguetes',
-            'ropa',
-            'calzado',
-            'cripto',
-            'fotografia',
-            'instrumentos-musicales',
-            'libros',
-            'alimentacion',
-            'alimentacion-animal',
-            'limpieza',
-            'hogar',
-            'otros'
-        ],
-        default: 'other'
-    },
+    category: [{
+            type: String,
+            enum: [
+                'electronica',
+                'software',
+                'videojuegos',
+                'juguetes',
+                'ropa',
+                'calzado',
+                'cripto',
+                'fotografia',
+                'instrumentos-musicales',
+                'libros',
+                'alimentacion',
+                'alimentacion-animal',
+                'limpieza',
+                'hogar',
+                'otros',
+                'other'
+            ],
+            default: 'other'
+        }],
     is_active: Boolean,
 }, {
     timestamps: true

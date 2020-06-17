@@ -1,4 +1,10 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -39,61 +45,36 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var PlatformsRepository_1 = __importDefault(require("../../repositories/platformsRepository/PlatformsRepository"));
-var PlatformsService = /** @class */ (function () {
-    function PlatformsService() {
-        this.platformsRepository = new PlatformsRepository_1.default();
+exports.ParserController = void 0;
+var core_1 = require("@overnightjs/core");
+var ParseService_1 = __importDefault(require("../../services/parseService/ParseService"));
+var ParserController = /** @class */ (function () {
+    function ParserController() {
+        this.parseService = new ParseService_1.default();
     }
-    PlatformsService.prototype.getPlatforms = function () {
+    ParserController.prototype.getHtml = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
+            var websiteURL, result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.platformsRepository.getPlatforms()];
-                    case 1: return [2 /*return*/, _a.sent()];
+                    case 0:
+                        websiteURL = req.body.websiteURL;
+                        return [4 /*yield*/, this.parseService.getWebsiteDataHTML(websiteURL)];
+                    case 1:
+                        result = _a.sent();
+                        console.log(websiteURL);
+                        res.send(result);
+                        return [2 /*return*/];
                 }
             });
         });
     };
-    PlatformsService.prototype.getPlatformsByCategory = function (category) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.platformsRepository.getPlatformsByCategory(category)];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    PlatformsService.prototype.insertPlatform = function (name, url, category) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.platformsRepository.insertPlatform(name, url, category)];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    PlatformsService.prototype.updatePlatform = function (platformId, name, url, category) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.platformsRepository.updatePlatform(platformId, name, url, category)];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    PlatformsService.prototype.deletePlatform = function (platformId) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.platformsRepository.deletePlatform(platformId)];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    return PlatformsService;
+    __decorate([
+        core_1.Get('getHtmlWebsite')
+    ], ParserController.prototype, "getHtml", null);
+    ParserController = __decorate([
+        core_1.Controller('parser')
+    ], ParserController);
+    return ParserController;
 }());
-exports.default = PlatformsService;
+exports.ParserController = ParserController;

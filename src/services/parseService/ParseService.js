@@ -39,61 +39,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var PlatformsRepository_1 = __importDefault(require("../../repositories/platformsRepository/PlatformsRepository"));
-var PlatformsService = /** @class */ (function () {
-    function PlatformsService() {
-        this.platformsRepository = new PlatformsRepository_1.default();
+var ParseRepository_1 = __importDefault(require("../../repositories/parseWebsiteRepository/ParseRepository"));
+var ParseService = /** @class */ (function () {
+    function ParseService() {
+        this.parseRepository = new ParseRepository_1.default();
     }
-    PlatformsService.prototype.getPlatforms = function () {
+    ParseService.prototype.getWebsiteDataHTML = function (urlWebsite) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.platformsRepository.getPlatforms()];
+                    case 0: return [4 /*yield*/, this.parseRepository.getWebsiteDataHTML(urlWebsite)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });
     };
-    PlatformsService.prototype.getPlatformsByCategory = function (category) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.platformsRepository.getPlatformsByCategory(category)];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    PlatformsService.prototype.insertPlatform = function (name, url, category) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.platformsRepository.insertPlatform(name, url, category)];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    PlatformsService.prototype.updatePlatform = function (platformId, name, url, category) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.platformsRepository.updatePlatform(platformId, name, url, category)];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    PlatformsService.prototype.deletePlatform = function (platformId) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.platformsRepository.deletePlatform(platformId)];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    return PlatformsService;
+    return ParseService;
 }());
-exports.default = PlatformsService;
+exports.default = ParseService;

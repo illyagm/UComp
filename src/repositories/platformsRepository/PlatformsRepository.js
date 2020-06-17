@@ -53,9 +53,21 @@ var PlatformsRepository = /** @class */ (function () {
             });
         });
     };
-    PlatformsRepository.prototype.insertPlatform = function (name, url) {
+    PlatformsRepository.prototype.getPlatformsByCategory = function (categoryFilter) {
         return __awaiter(this, void 0, void 0, function () {
-            var checkExistancePlatform;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        console.log('inside repo: ' + categoryFilter);
+                        return [4 /*yield*/, PlatformSchema_1.default.aggregate([{ $match: { category: categoryFilter, is_active: true } }])];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    PlatformsRepository.prototype.insertPlatform = function (name, url, category) {
+        return __awaiter(this, void 0, void 0, function () {
+            var checkExistancePlatform, data;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -64,18 +76,28 @@ var PlatformsRepository = /** @class */ (function () {
                     case 1:
                         if (!((_a.sent()).length !== 0)) return [3 /*break*/, 2];
                         return [2 /*return*/, 'Platform Already Exists!'];
-                    case 2: return [4 /*yield*/, PlatformSchema_1.default.insertMany([{
+                    case 2:
+                        data = [{
                                 id: '_' + Math.random().toString(36).substr(2, 9),
                                 name: name,
                                 url: url,
+                                category: category,
                                 is_active: true
-                            }])];
+                            }];
+                        console.log(data);
+                        return [4 /*yield*/, PlatformSchema_1.default.insertMany([{
+                                    id: '_' + Math.random().toString(36).substr(2, 9),
+                                    name: name,
+                                    url: url,
+                                    category: category,
+                                    is_active: true
+                                }])];
                     case 3: return [2 /*return*/, _a.sent()];
                 }
             });
         });
     };
-    PlatformsRepository.prototype.updatePlatform = function (platformId, name, url) {
+    PlatformsRepository.prototype.updatePlatform = function (platformId, name, url, category) {
         return __awaiter(this, void 0, void 0, function () {
             var filter, update;
             return __generator(this, function (_a) {
@@ -86,8 +108,10 @@ var PlatformsRepository = /** @class */ (function () {
                         };
                         update = {
                             name: name,
-                            url: url
+                            url: url,
+                            category: category
                         };
+                        console.log(update);
                         return [4 /*yield*/, PlatformSchema_1.default.findOneAndUpdate(filter, update, {
                                 new: true
                             })];

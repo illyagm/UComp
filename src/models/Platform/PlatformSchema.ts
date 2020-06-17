@@ -4,8 +4,8 @@ export interface IPlatform extends Document {
     id: String;
     name: String;
     url: String;
-    category: {
-        type: [String];
+    category: [{
+        type: String
         enum: [
             'electronica',
             'software',
@@ -21,10 +21,10 @@ export interface IPlatform extends Document {
             'alimentacion-animal',
             'limpieza',
             'hogar',
-            'otros'
+            'other'
         ],
         default: 'other'
-    };
+    }];
     is_active: Boolean;
     timestamps: true;
 }
@@ -33,8 +33,8 @@ const PlatformSchema: Schema = new Schema({
     id: String,
     name: String,
     url: String,
-    category: {
-        type: [String],
+    category: [{
+        type: String,
         enum: [
             'electronica',
             'software',
@@ -50,10 +50,11 @@ const PlatformSchema: Schema = new Schema({
             'alimentacion-animal',
             'limpieza',
             'hogar',
-            'otros'
+            'otros',
+            'other'
         ],
         default: 'other'
-    },
+    }],
     is_active: Boolean,
 },
     {
