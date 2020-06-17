@@ -4,7 +4,6 @@ import cheerio from 'cheerio';
 export default class ParseRepository implements IParseRepository {
 
     public async getWebsiteDataHTML(urlWebsite: String): Promise<any> {
-        // Usage!
         const fetchDataWebsite = async (url: String) => {
             try {
                 const result = await got.get('' + urlWebsite);
