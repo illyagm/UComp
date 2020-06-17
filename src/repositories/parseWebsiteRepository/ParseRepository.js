@@ -39,14 +39,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var axios_1 = __importDefault(require("axios"));
+var got_1 = __importDefault(require("got"));
 var cheerio_1 = __importDefault(require("cheerio"));
 var ParseRepository = /** @class */ (function () {
     function ParseRepository() {
     }
     ParseRepository.prototype.getWebsiteDataHTML = function (urlWebsite) {
         return __awaiter(this, void 0, void 0, function () {
-            var fetchDataWebsite, html, $_1, productsMap, error_1;
+            var fetchDataWebsite, html, $_1, productsMap6, error_1;
             var _this = this;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -57,10 +57,10 @@ var ParseRepository = /** @class */ (function () {
                                 switch (_a.label) {
                                     case 0:
                                         _a.trys.push([0, 2, , 3]);
-                                        return [4 /*yield*/, axios_1.default.get('' + urlWebsite)];
+                                        return [4 /*yield*/, got_1.default.get('' + urlWebsite)];
                                     case 1:
                                         result = _a.sent();
-                                        return [2 /*return*/, result.data];
+                                        return [2 /*return*/, result.body];
                                     case 2:
                                         error_2 = _a.sent();
                                         throw error_2;
@@ -75,16 +75,15 @@ var ParseRepository = /** @class */ (function () {
                     case 2:
                         html = _a.sent();
                         $_1 = cheerio_1.default.load(html);
-                        productsMap = $_1('.s-result-item > .sg-col-inner > .celwidget').map(function (index, elem) { return __awaiter(_this, void 0, void 0, function () {
+                        productsMap6 = $_1('.search_result_row').map(function (index, elem) { return __awaiter(_this, void 0, void 0, function () {
                             var imageUrl, productName, productUrl, productRating, numberOfRatings, productPrice;
                             return __generator(this, function (_a) {
-                                imageUrl = $_1(elem).find('.s-image').attr('src');
-                                productName = $_1(elem).find('.a-text-normal > span.a-text-normal').text().trim();
-                                productUrl = $_1(elem).find('.rush-component > .a-link-normal').attr('href');
-                                productRating = $_1(elem).find('.a-icon > .a-icon-alt').text().trim();
-                                numberOfRatings = $_1(elem).find('.a-link-normal > .a-size-base').text().trim();
-                                productPrice = $_1(elem).find('.a-price-whole').text().trim();
-                                console.log('Created Promise for url: ' + imageUrl);
+                                imageUrl = $_1(elem).find('img').attr('src');
+                                productName = $_1(elem).find('span.title').text().trim();
+                                productUrl = $_1(elem).attr('href');
+                                productRating = '';
+                                numberOfRatings = '';
+                                productPrice = $_1(elem).find('.search_price_discount_combined').text().trim();
                                 return [2 /*return*/, {
                                         index: index,
                                         imageUrl: imageUrl,
@@ -96,8 +95,7 @@ var ParseRepository = /** @class */ (function () {
                                     }];
                             });
                         }); }).get();
-                        //PCCOMPONENTES
-                        return [2 /*return*/, Promise.all(productsMap)];
+                        return [2 /*return*/, Promise.all(productsMap6)];
                     case 3:
                         error_1 = _a.sent();
                         throw error_1;
