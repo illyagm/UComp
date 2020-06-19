@@ -54,100 +54,15 @@ var ParserController = /** @class */ (function () {
     }
     ParserController.prototype.getAmazonProducts = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var websiteURL, result;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
+            var _a, websiteURL, platformId, result;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0:
-                        websiteURL = req.body.websiteURL;
-                        return [4 /*yield*/, this.parseService.parseAmazon(websiteURL)];
+                        _a = req.body, websiteURL = _a.websiteURL, platformId = _a.platformId;
+                        return [4 /*yield*/, this.parseService.parseAndGetProducts(websiteURL, platformId)];
                     case 1:
-                        result = _a.sent();
-                        console.log(websiteURL);
-                        res.send(result);
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    ParserController.prototype.getEneba = function (req, res) {
-        return __awaiter(this, void 0, void 0, function () {
-            var websiteURL, result;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        websiteURL = req.body.websiteURL;
-                        return [4 /*yield*/, this.parseService.parseEneba(websiteURL)];
-                    case 1:
-                        result = _a.sent();
-                        console.log(websiteURL);
-                        res.send(result);
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    ParserController.prototype.getIG = function (req, res) {
-        return __awaiter(this, void 0, void 0, function () {
-            var websiteURL, result;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        websiteURL = req.body.websiteURL;
-                        return [4 /*yield*/, this.parseService.parseInstantGaming(websiteURL)];
-                    case 1:
-                        result = _a.sent();
-                        console.log(websiteURL);
-                        res.send(result);
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    ParserController.prototype.getMMOGA = function (req, res) {
-        return __awaiter(this, void 0, void 0, function () {
-            var websiteURL, result;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        websiteURL = req.body.websiteURL;
-                        return [4 /*yield*/, this.parseService.parseMMOGA(websiteURL)];
-                    case 1:
-                        result = _a.sent();
-                        console.log(websiteURL);
-                        res.send(result);
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    ParserController.prototype.getPCComp = function (req, res) {
-        return __awaiter(this, void 0, void 0, function () {
-            var websiteURL, result;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        websiteURL = req.body.websiteURL;
-                        return [4 /*yield*/, this.parseService.parsePCComponentes(websiteURL)];
-                    case 1:
-                        result = _a.sent();
-                        console.log(websiteURL);
-                        res.send(result);
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    ParserController.prototype.getSteam = function (req, res) {
-        return __awaiter(this, void 0, void 0, function () {
-            var websiteURL, result;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        websiteURL = req.body.websiteURL;
-                        return [4 /*yield*/, this.parseService.parseSteam(websiteURL)];
-                    case 1:
-                        result = _a.sent();
-                        console.log(websiteURL);
+                        result = _b.sent();
+                        console.log(websiteURL + ' id:' + platformId);
                         res.send(result);
                         return [2 /*return*/];
                 }
@@ -155,23 +70,8 @@ var ParserController = /** @class */ (function () {
         });
     };
     __decorate([
-        core_1.Get('getAmazonProducts')
+        core_1.Post('getProducts')
     ], ParserController.prototype, "getAmazonProducts", null);
-    __decorate([
-        core_1.Get('getEnebaProducts')
-    ], ParserController.prototype, "getEneba", null);
-    __decorate([
-        core_1.Get('getIGProducts')
-    ], ParserController.prototype, "getIG", null);
-    __decorate([
-        core_1.Get('getMMOGAProducts')
-    ], ParserController.prototype, "getMMOGA", null);
-    __decorate([
-        core_1.Get('getPCCompProducts')
-    ], ParserController.prototype, "getPCComp", null);
-    __decorate([
-        core_1.Get('getSteamProducts')
-    ], ParserController.prototype, "getSteam", null);
     ParserController = __decorate([
         core_1.Controller('searchResults')
     ], ParserController);

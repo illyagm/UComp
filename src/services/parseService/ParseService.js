@@ -44,61 +44,11 @@ var ParseService = /** @class */ (function () {
     function ParseService() {
         this.parseRepository = new ParseRepository_1.default();
     }
-    ParseService.prototype.parseAmazon = function (urlWebsite) {
+    ParseService.prototype.parseAndGetProducts = function (urlWebsite, searchPlatformId) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.parseRepository.parseAmazon(urlWebsite)];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    ParseService.prototype.parseEneba = function (urlWebsite) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.parseRepository.parseEneba(urlWebsite)];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    ParseService.prototype.parseInstantGaming = function (urlWebsite) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.parseRepository.parseInstantGaming(urlWebsite)];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    ParseService.prototype.parseMMOGA = function (urlWebsite) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.parseRepository.parseMMOGA(urlWebsite)];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    ParseService.prototype.parsePCComponentes = function (urlWebsite) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.parseRepository.parsePCComponentes(urlWebsite)];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    ParseService.prototype.parseSteam = function (urlWebsite) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.parseRepository.parseSteam(urlWebsite)];
+                    case 0: return [4 /*yield*/, this.parseRepository.parseAndGetProducts(urlWebsite, searchPlatformId)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });

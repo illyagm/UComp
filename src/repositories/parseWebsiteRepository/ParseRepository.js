@@ -44,15 +44,15 @@ var cheerio_1 = __importDefault(require("cheerio"));
 var ParseRepository = /** @class */ (function () {
     function ParseRepository() {
     }
-    ParseRepository.prototype.parseAmazon = function (urlWebsite) {
+    ParseRepository.prototype.parseAndGetProducts = function (urlWebsite, searchPlatformId) {
         return __awaiter(this, void 0, void 0, function () {
-            var fetchDataWebsite, html, $_1, productsMap, error_1;
+            var fetchDataWebsite, html, $, productsMap, productsMap3, productsMap4, productsMap5, productsMap2, productsMap6;
             var _this = this;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         fetchDataWebsite = function (url) { return __awaiter(_this, void 0, void 0, function () {
-                            var result, error_2;
+                            var result, error_1;
                             return __generator(this, function (_a) {
                                 switch (_a.label) {
                                     case 0:
@@ -62,354 +62,187 @@ var ParseRepository = /** @class */ (function () {
                                         result = _a.sent();
                                         return [2 /*return*/, result.body];
                                     case 2:
-                                        error_2 = _a.sent();
-                                        throw error_2;
+                                        error_1 = _a.sent();
+                                        throw error_1;
                                     case 3: return [2 /*return*/];
                                 }
                             });
                         }); };
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 3, , 4]);
                         return [4 /*yield*/, fetchDataWebsite(urlWebsite)];
-                    case 2:
+                    case 1:
                         html = _a.sent();
-                        $_1 = cheerio_1.default.load(html);
-                        productsMap = $_1('.s-result-item > .sg-col-inner > .celwidget').map(function (index, elem) { return __awaiter(_this, void 0, void 0, function () {
-                            var imageUrl, productName, productUrl, productRating, numberOfRatings, productPrice;
-                            return __generator(this, function (_a) {
-                                imageUrl = $_1(elem).find('.s-image').attr('src');
-                                productName = $_1(elem).find('.a-text-normal > span.a-text-normal').text().trim();
-                                productUrl = $_1(elem).find('.rush-component > .a-link-normal').attr('href');
-                                productRating = $_1(elem).find('.a-icon > .a-icon-alt').text().trim();
-                                numberOfRatings = $_1(elem).find('.a-link-normal > .a-size-base').text().trim();
-                                productPrice = $_1(elem).find('.a-price-whole').text().trim();
-                                console.log('Created Promise for url: ' + imageUrl);
-                                return [2 /*return*/, {
-                                        index: index,
-                                        imageUrl: imageUrl,
-                                        productName: productName,
-                                        productUrl: productUrl,
-                                        productRating: productRating,
-                                        numberOfRatings: numberOfRatings,
-                                        productPrice: productPrice
-                                    }];
-                            });
-                        }); }).get();
-                        return [2 /*return*/, Promise.all(productsMap)];
-                    case 3:
-                        error_1 = _a.sent();
-                        throw error_1;
-                    case 4: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    ParseRepository.prototype.parseEneba = function (urlWebsite) {
-        return __awaiter(this, void 0, void 0, function () {
-            var fetchDataWebsite, html, $_2, productsMap3, error_3;
-            var _this = this;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        fetchDataWebsite = function (url) { return __awaiter(_this, void 0, void 0, function () {
-                            var result, error_4;
-                            return __generator(this, function (_a) {
-                                switch (_a.label) {
-                                    case 0:
-                                        _a.trys.push([0, 2, , 3]);
-                                        return [4 /*yield*/, got_1.default.get('' + urlWebsite)];
-                                    case 1:
-                                        result = _a.sent();
-                                        return [2 /*return*/, result.body];
-                                    case 2:
-                                        error_4 = _a.sent();
-                                        throw error_4;
-                                    case 3: return [2 /*return*/];
+                        $ = cheerio_1.default.load(html);
+                        //parse depending on the selected platform id
+                        switch (searchPlatformId) {
+                            case "_w5itz82oz":
+                                try {
+                                    productsMap = $('.s-result-item > .sg-col-inner > .celwidget').map(function (index, elem) { return __awaiter(_this, void 0, void 0, function () {
+                                        var imageUrl, productName, productUrl, productRating, numberOfRatings, productPrice;
+                                        return __generator(this, function (_a) {
+                                            imageUrl = $(elem).find('.s-image').attr('src');
+                                            productName = $(elem).find('.a-text-normal > span.a-text-normal').text().trim();
+                                            productUrl = $(elem).find('.rush-component > .a-link-normal').attr('href');
+                                            productRating = $(elem).find('.a-icon > .a-icon-alt').text().trim();
+                                            numberOfRatings = $(elem).find('.a-link-normal > .a-size-base').text().trim();
+                                            productPrice = $(elem).find('.a-price-whole').text().trim();
+                                            console.log('Created Promise for url: ' + imageUrl);
+                                            return [2 /*return*/, {
+                                                    index: index,
+                                                    imageUrl: imageUrl,
+                                                    productName: productName,
+                                                    productUrl: productUrl,
+                                                    productRating: productRating,
+                                                    numberOfRatings: numberOfRatings,
+                                                    productPrice: productPrice
+                                                }];
+                                        });
+                                    }); }).get();
+                                    return [2 /*return*/, Promise.all(productsMap)];
                                 }
-                            });
-                        }); };
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, fetchDataWebsite(urlWebsite)];
-                    case 2:
-                        html = _a.sent();
-                        $_2 = cheerio_1.default.load(html);
-                        productsMap3 = $_2('._2rxjGA').map(function (index, elem) { return __awaiter(_this, void 0, void 0, function () {
-                            var imageUrl, productName, productUrl, productRating, numberOfRatings, productPrice;
-                            return __generator(this, function (_a) {
-                                imageUrl = $_2(elem).find('._2vZ2Ja > src').attr('src');
-                                productName = $_2(elem).find('._1LGeh3 > ._1ZwRcm > span').text().trim();
-                                productUrl = $_2(elem).find('._2idjXd').attr('href');
-                                productRating = '';
-                                numberOfRatings = '';
-                                productPrice = $_2(elem).find('._2zDsnm > ._3RZkEb').text().trim();
-                                return [2 /*return*/, {
-                                        index: index,
-                                        imageUrl: imageUrl,
-                                        productName: productName,
-                                        productUrl: productUrl,
-                                        productRating: productRating,
-                                        numberOfRatings: numberOfRatings,
-                                        productPrice: productPrice
-                                    }];
-                            });
-                        }); }).get();
-                        return [2 /*return*/, Promise.all(productsMap3)];
-                    case 3:
-                        error_3 = _a.sent();
-                        throw error_3;
-                    case 4: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    ;
-    ParseRepository.prototype.parseInstantGaming = function (urlWebsite) {
-        return __awaiter(this, void 0, void 0, function () {
-            var fetchDataWebsite, html, $_3, productsMap4, error_5;
-            var _this = this;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        fetchDataWebsite = function (url) { return __awaiter(_this, void 0, void 0, function () {
-                            var result, error_6;
-                            return __generator(this, function (_a) {
-                                switch (_a.label) {
-                                    case 0:
-                                        _a.trys.push([0, 2, , 3]);
-                                        return [4 /*yield*/, got_1.default.get('' + urlWebsite)];
-                                    case 1:
-                                        result = _a.sent();
-                                        return [2 /*return*/, result.body];
-                                    case 2:
-                                        error_6 = _a.sent();
-                                        throw error_6;
-                                    case 3: return [2 /*return*/];
+                                catch (error) {
+                                    throw error;
                                 }
-                            });
-                        }); };
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, fetchDataWebsite(urlWebsite)];
-                    case 2:
-                        html = _a.sent();
-                        $_3 = cheerio_1.default.load(html);
-                        productsMap4 = $_3('.search > .item').map(function (index, elem) { return __awaiter(_this, void 0, void 0, function () {
-                            var imageUrl, productName, productUrl, productRating, numberOfRatings, productPrice;
-                            return __generator(this, function (_a) {
-                                imageUrl = $_3(elem).find('.cover > img').attr('href');
-                                productName = $_3(elem).find('.name').text().trim();
-                                productUrl = $_3(elem).find('.cover').attr('href');
-                                productRating = '';
-                                numberOfRatings = '';
-                                productPrice = $_3(elem).find('.shadow > .price').text().trim() + ' (' + $_3(elem).find('.shadow > .discount').text().trim() + ' descuento)';
-                                return [2 /*return*/, {
-                                        index: index,
-                                        imageUrl: imageUrl,
-                                        productName: productName,
-                                        productUrl: productUrl,
-                                        productRating: productRating,
-                                        numberOfRatings: numberOfRatings,
-                                        productPrice: productPrice
-                                    }];
-                            });
-                        }); }).get();
-                        return [2 /*return*/, Promise.all(productsMap4)];
-                    case 3:
-                        error_5 = _a.sent();
-                        throw error_5;
-                    case 4: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    ;
-    ParseRepository.prototype.parseMMOGA = function (urlWebsite) {
-        return __awaiter(this, void 0, void 0, function () {
-            var fetchDataWebsite, html, $_4, productsMap5, error_7;
-            var _this = this;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        fetchDataWebsite = function (url) { return __awaiter(_this, void 0, void 0, function () {
-                            var result, error_8;
-                            return __generator(this, function (_a) {
-                                switch (_a.label) {
-                                    case 0:
-                                        _a.trys.push([0, 2, , 3]);
-                                        return [4 /*yield*/, got_1.default.get('' + urlWebsite)];
-                                    case 1:
-                                        result = _a.sent();
-                                        return [2 /*return*/, result.body];
-                                    case 2:
-                                        error_8 = _a.sent();
-                                        throw error_8;
-                                    case 3: return [2 /*return*/];
+                            case "_c2a2a6g33":
+                                try {
+                                    productsMap3 = $('._2rxjGA').map(function (index, elem) { return __awaiter(_this, void 0, void 0, function () {
+                                        var imageUrl, productName, productUrl, productRating, numberOfRatings, productPrice;
+                                        return __generator(this, function (_a) {
+                                            imageUrl = $(elem).find('._2vZ2Ja > src').attr('src');
+                                            productName = $(elem).find('._1LGeh3 > ._1ZwRcm > span').text().trim();
+                                            productUrl = $(elem).find('._2idjXd').attr('href');
+                                            productRating = '';
+                                            numberOfRatings = '';
+                                            productPrice = $(elem).find('._2zDsnm > ._3RZkEb').text().trim();
+                                            return [2 /*return*/, {
+                                                    index: index,
+                                                    imageUrl: imageUrl,
+                                                    productName: productName,
+                                                    productUrl: productUrl,
+                                                    productRating: productRating,
+                                                    numberOfRatings: numberOfRatings,
+                                                    productPrice: productPrice
+                                                }];
+                                        });
+                                    }); }).get();
+                                    return [2 /*return*/, Promise.all(productsMap3)];
                                 }
-                            });
-                        }); };
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, fetchDataWebsite(urlWebsite)];
-                    case 2:
-                        html = _a.sent();
-                        $_4 = cheerio_1.default.load(html);
-                        productsMap5 = $_4('.searchCont').map(function (index, elem) { return __awaiter(_this, void 0, void 0, function () {
-                            var imageUrl, productName, productUrl, productRating, numberOfRatings, productPrice;
-                            return __generator(this, function (_a) {
-                                imageUrl = $_4(elem).find('.itemImg > a').attr('data-background');
-                                productName = $_4(elem).find('.itemCont > a').text().trim();
-                                productUrl = $_4(elem).find('.itemImg > a').attr('href');
-                                productRating = '';
-                                numberOfRatings = '';
-                                productPrice = $_4(elem).find('.itemPrice > .smallBoldText').text().trim() + ' ( ' + $_4(elem).find('.itemPrice > del').text().trim() + ' antes)';
-                                return [2 /*return*/, {
-                                        index: index,
-                                        imageUrl: imageUrl,
-                                        productName: productName,
-                                        productUrl: productUrl,
-                                        productRating: productRating,
-                                        numberOfRatings: numberOfRatings,
-                                        productPrice: productPrice
-                                    }];
-                            });
-                        }); }).get();
-                        return [2 /*return*/, Promise.all(productsMap5)];
-                    case 3:
-                        error_7 = _a.sent();
-                        throw error_7;
-                    case 4: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    ;
-    ParseRepository.prototype.parsePCComponentes = function (urlWebsite) {
-        return __awaiter(this, void 0, void 0, function () {
-            var fetchDataWebsite, html, $_5, productsMap2, error_9;
-            var _this = this;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        fetchDataWebsite = function (url) { return __awaiter(_this, void 0, void 0, function () {
-                            var result, error_10;
-                            return __generator(this, function (_a) {
-                                switch (_a.label) {
-                                    case 0:
-                                        _a.trys.push([0, 2, , 3]);
-                                        return [4 /*yield*/, got_1.default.get('' + urlWebsite)];
-                                    case 1:
-                                        result = _a.sent();
-                                        return [2 /*return*/, result.body];
-                                    case 2:
-                                        error_10 = _a.sent();
-                                        throw error_10;
-                                    case 3: return [2 /*return*/];
+                                catch (error) {
+                                    throw error;
                                 }
-                            });
-                        }); };
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, fetchDataWebsite(urlWebsite)];
-                    case 2:
-                        html = _a.sent();
-                        $_5 = cheerio_1.default.load(html);
-                        productsMap2 = $_5('#articleListContent > .row > .col-md-4').map(function (index, elem) { return __awaiter(_this, void 0, void 0, function () {
-                            var imageUrl, productName, productUrl, productRating, numberOfRatings, productPrice;
-                            return __generator(this, function (_a) {
-                                imageUrl = $_5(elem).find('.tarjeta-articulo__foto > .img-fluid').attr('src');
-                                productName = $_5(elem).find('.tarjeta-articulo__nombre > h3 > a').text().trim();
-                                productUrl = $_5(elem).find('.tarjeta-articulo__nombre > h3 > a').attr('href');
-                                productRating = $_5(elem).find('.rating-container > .rating-stars').attr('style');
-                                numberOfRatings = $_5(elem).find('.tarjeta-articulo__extras > .total_valoration').text().trim();
-                                productPrice = $_5(elem).find('.tarjeta-articulo__precios > .tarjeta-articulo__precio-actual').text().trim();
-                                return [2 /*return*/, {
-                                        index: index,
-                                        imageUrl: imageUrl,
-                                        productName: productName,
-                                        productUrl: productUrl,
-                                        productRating: productRating,
-                                        numberOfRatings: numberOfRatings,
-                                        productPrice: productPrice
-                                    }];
-                            });
-                        }); }).get();
-                        return [2 /*return*/, Promise.all(productsMap2)];
-                    case 3:
-                        error_9 = _a.sent();
-                        throw error_9;
-                    case 4: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    ;
-    ParseRepository.prototype.parseSteam = function (urlWebsite) {
-        return __awaiter(this, void 0, void 0, function () {
-            var fetchDataWebsite, html, $_6, productsMap6, error_11;
-            var _this = this;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        fetchDataWebsite = function (url) { return __awaiter(_this, void 0, void 0, function () {
-                            var result, error_12;
-                            return __generator(this, function (_a) {
-                                switch (_a.label) {
-                                    case 0:
-                                        _a.trys.push([0, 2, , 3]);
-                                        return [4 /*yield*/, got_1.default.get('' + urlWebsite)];
-                                    case 1:
-                                        result = _a.sent();
-                                        return [2 /*return*/, result.body];
-                                    case 2:
-                                        error_12 = _a.sent();
-                                        throw error_12;
-                                    case 3: return [2 /*return*/];
+                            case "_homqldlzj":
+                                try {
+                                    productsMap4 = $('.search > .item').map(function (index, elem) { return __awaiter(_this, void 0, void 0, function () {
+                                        var imageUrl, productName, productUrl, productRating, numberOfRatings, productPrice;
+                                        return __generator(this, function (_a) {
+                                            imageUrl = $(elem).find('.cover > img').attr('href');
+                                            productName = $(elem).find('.name').text().trim();
+                                            productUrl = $(elem).find('.cover').attr('href');
+                                            productRating = '';
+                                            numberOfRatings = '';
+                                            productPrice = $(elem).find('.shadow > .price').text().trim() + ' (' + $(elem).find('.shadow > .discount').text().trim() + ' descuento)';
+                                            return [2 /*return*/, {
+                                                    index: index,
+                                                    imageUrl: imageUrl,
+                                                    productName: productName,
+                                                    productUrl: productUrl,
+                                                    productRating: productRating,
+                                                    numberOfRatings: numberOfRatings,
+                                                    productPrice: productPrice
+                                                }];
+                                        });
+                                    }); }).get();
+                                    return [2 /*return*/, Promise.all(productsMap4)];
                                 }
-                            });
-                        }); };
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, fetchDataWebsite(urlWebsite)];
-                    case 2:
-                        html = _a.sent();
-                        $_6 = cheerio_1.default.load(html);
-                        productsMap6 = $_6('.search_result_row').map(function (index, elem) { return __awaiter(_this, void 0, void 0, function () {
-                            var imageUrl, productName, productUrl, productRating, numberOfRatings, productPrice;
-                            return __generator(this, function (_a) {
-                                imageUrl = $_6(elem).find('img').attr('src');
-                                productName = $_6(elem).find('span.title').text().trim();
-                                productUrl = $_6(elem).attr('href');
-                                productRating = '';
-                                numberOfRatings = '';
-                                productPrice = $_6(elem).find('.search_price_discount_combined').text().trim();
-                                return [2 /*return*/, {
-                                        index: index,
-                                        imageUrl: imageUrl,
-                                        productName: productName,
-                                        productUrl: productUrl,
-                                        productRating: productRating,
-                                        numberOfRatings: numberOfRatings,
-                                        productPrice: productPrice
-                                    }];
-                            });
-                        }); }).get();
-                        return [2 /*return*/, Promise.all(productsMap6)];
-                    case 3:
-                        error_11 = _a.sent();
-                        throw error_11;
-                    case 4: return [2 /*return*/];
+                                catch (error) {
+                                    throw error;
+                                }
+                            case "_0c7dkduby":
+                                try {
+                                    productsMap5 = $('.searchCont').map(function (index, elem) { return __awaiter(_this, void 0, void 0, function () {
+                                        var imageUrl, productName, productUrl, productRating, numberOfRatings, productPrice;
+                                        return __generator(this, function (_a) {
+                                            imageUrl = $(elem).find('.itemImg > a').attr('data-background');
+                                            productName = $(elem).find('.itemCont > a').text().trim();
+                                            productUrl = $(elem).find('.itemImg > a').attr('href');
+                                            productRating = '';
+                                            numberOfRatings = '';
+                                            productPrice = $(elem).find('.itemPrice > .smallBoldText').text().trim() + ' ( ' + $(elem).find('.itemPrice > del').text().trim() + ' antes)';
+                                            return [2 /*return*/, {
+                                                    index: index,
+                                                    imageUrl: imageUrl,
+                                                    productName: productName,
+                                                    productUrl: productUrl,
+                                                    productRating: productRating,
+                                                    numberOfRatings: numberOfRatings,
+                                                    productPrice: productPrice
+                                                }];
+                                        });
+                                    }); }).get();
+                                    return [2 /*return*/, Promise.all(productsMap5)];
+                                }
+                                catch (error) {
+                                    throw error;
+                                }
+                            case "_5pjw82zqk":
+                                try {
+                                    productsMap2 = $('#articleListContent > .row > .col-md-4').map(function (index, elem) { return __awaiter(_this, void 0, void 0, function () {
+                                        var imageUrl, productName, productUrl, productRating, numberOfRatings, productPrice;
+                                        return __generator(this, function (_a) {
+                                            imageUrl = $(elem).find('.tarjeta-articulo__foto > .img-fluid').attr('data-src');
+                                            productName = $(elem).find('.tarjeta-articulo__nombre > h3 > a').text().trim();
+                                            productUrl = $(elem).find('.tarjeta-articulo__nombre > h3 > a').attr('href');
+                                            productRating = $(elem).find('.rating-container > .rating-stars').attr('style');
+                                            numberOfRatings = $(elem).find('.tarjeta-articulo__extras > .total_valoration').text().trim();
+                                            productPrice = $(elem).find('.tarjeta-articulo__precios > .tarjeta-articulo__precio-actual').text().trim();
+                                            return [2 /*return*/, {
+                                                    index: index,
+                                                    imageUrl: imageUrl,
+                                                    productName: productName,
+                                                    productUrl: productUrl,
+                                                    productRating: productRating,
+                                                    numberOfRatings: numberOfRatings,
+                                                    productPrice: productPrice
+                                                }];
+                                        });
+                                    }); }).get();
+                                    return [2 /*return*/, Promise.all(productsMap2)];
+                                }
+                                catch (error) {
+                                    throw error;
+                                }
+                            case "_iqegee9gd":
+                                try {
+                                    productsMap6 = $('.search_result_row').map(function (index, elem) { return __awaiter(_this, void 0, void 0, function () {
+                                        var imageUrl, productName, productUrl, productRating, numberOfRatings, productPrice;
+                                        return __generator(this, function (_a) {
+                                            imageUrl = $(elem).find('img').attr('src');
+                                            productName = $(elem).find('span.title').text().trim();
+                                            productUrl = $(elem).attr('href');
+                                            productRating = '';
+                                            numberOfRatings = '';
+                                            productPrice = $(elem).find('.search_price_discount_combined').text().trim();
+                                            return [2 /*return*/, {
+                                                    index: index,
+                                                    imageUrl: imageUrl,
+                                                    productName: productName,
+                                                    productUrl: productUrl,
+                                                    productRating: productRating,
+                                                    numberOfRatings: numberOfRatings,
+                                                    productPrice: productPrice
+                                                }];
+                                        });
+                                    }); }).get();
+                                    return [2 /*return*/, Promise.all(productsMap6)];
+                                }
+                                catch (error) {
+                                    throw error;
+                                }
+                        }
+                        return [2 /*return*/];
                 }
             });
         });
     };
-    ;
     return ParseRepository;
 }());
 exports.default = ParseRepository;
