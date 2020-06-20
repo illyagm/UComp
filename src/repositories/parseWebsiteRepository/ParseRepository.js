@@ -81,10 +81,10 @@ var ParseRepository = /** @class */ (function () {
                                         return __generator(this, function (_a) {
                                             imageUrl = $(elem).find('.s-image').attr('src');
                                             productName = $(elem).find('.a-text-normal > span.a-text-normal').text().trim();
-                                            productUrl = $(elem).find('.rush-component > .a-link-normal').attr('href');
+                                            productUrl = 'https://www.amazon.es/' + $(elem).find('.rush-component > .a-link-normal').attr('href');
                                             productRating = $(elem).find('.a-icon > .a-icon-alt').text().trim();
                                             numberOfRatings = $(elem).find('.a-link-normal > .a-size-base').text().trim();
-                                            productPrice = $(elem).find('.a-price-whole').text().trim();
+                                            productPrice = $(elem).find('span .a-price-whole').children().remove().end().text().trim();
                                             console.log('Created Promise for url: ' + imageUrl);
                                             return [2 /*return*/, {
                                                     index: index,
@@ -107,12 +107,12 @@ var ParseRepository = /** @class */ (function () {
                                     productsMap3 = $('._2rxjGA').map(function (index, elem) { return __awaiter(_this, void 0, void 0, function () {
                                         var imageUrl, productName, productUrl, productRating, numberOfRatings, productPrice;
                                         return __generator(this, function (_a) {
-                                            imageUrl = $(elem).find('._2vZ2Ja > src').attr('src');
+                                            imageUrl = $(elem).find('._2vZ2Ja > img').attr('src');
                                             productName = $(elem).find('._1LGeh3 > ._1ZwRcm > span').text().trim();
-                                            productUrl = $(elem).find('._2idjXd').attr('href');
-                                            productRating = '';
-                                            numberOfRatings = '';
-                                            productPrice = $(elem).find('._2zDsnm > ._3RZkEb').text().trim();
+                                            productUrl = 'https://www.eneba.com' + $(elem).find('._2idjXd').attr('href');
+                                            productRating = 'NA';
+                                            numberOfRatings = 'NA';
+                                            productPrice = ($(elem).find('._2zDsnm > ._3RZkEb').text().trim()).replace('€', '');
                                             return [2 /*return*/, {
                                                     index: index,
                                                     imageUrl: imageUrl,
@@ -134,12 +134,12 @@ var ParseRepository = /** @class */ (function () {
                                     productsMap4 = $('.search > .item').map(function (index, elem) { return __awaiter(_this, void 0, void 0, function () {
                                         var imageUrl, productName, productUrl, productRating, numberOfRatings, productPrice;
                                         return __generator(this, function (_a) {
-                                            imageUrl = $(elem).find('.cover > img').attr('href');
+                                            imageUrl = $(elem).find('.cover > img').attr('src');
                                             productName = $(elem).find('.name').text().trim();
                                             productUrl = $(elem).find('.cover').attr('href');
-                                            productRating = '';
-                                            numberOfRatings = '';
-                                            productPrice = $(elem).find('.shadow > .price').text().trim() + ' (' + $(elem).find('.shadow > .discount').text().trim() + ' descuento)';
+                                            productRating = 'NA';
+                                            numberOfRatings = 'NA';
+                                            productPrice = ($(elem).find('.shadow > .price').text().trim() + ' (' + $(elem).find('.shadow > .discount').text().trim() + ' descuento) ').replace('€', '');
                                             return [2 /*return*/, {
                                                     index: index,
                                                     imageUrl: imageUrl,
@@ -161,12 +161,12 @@ var ParseRepository = /** @class */ (function () {
                                     productsMap5 = $('.searchCont').map(function (index, elem) { return __awaiter(_this, void 0, void 0, function () {
                                         var imageUrl, productName, productUrl, productRating, numberOfRatings, productPrice;
                                         return __generator(this, function (_a) {
-                                            imageUrl = $(elem).find('.itemImg > a').attr('data-background');
+                                            imageUrl = 'https://www.mmoga.es' + $(elem).find('.itemImg > a').attr('data-background');
                                             productName = $(elem).find('.itemCont > a').text().trim();
-                                            productUrl = $(elem).find('.itemImg > a').attr('href');
-                                            productRating = '';
-                                            numberOfRatings = '';
-                                            productPrice = $(elem).find('.itemPrice > .smallBoldText').text().trim() + ' ( ' + $(elem).find('.itemPrice > del').text().trim() + ' antes)';
+                                            productUrl = 'https://www.mmoga.es' + $(elem).find('.itemImg > a').attr('href');
+                                            productRating = 'NA';
+                                            numberOfRatings = 'NA';
+                                            productPrice = ($(elem).find('.itemPrice > .smallBoldText').text().trim()).replace('€', '');
                                             return [2 /*return*/, {
                                                     index: index,
                                                     imageUrl: imageUrl,
@@ -190,10 +190,10 @@ var ParseRepository = /** @class */ (function () {
                                         return __generator(this, function (_a) {
                                             imageUrl = $(elem).find('.tarjeta-articulo__foto > .img-fluid').attr('data-src');
                                             productName = $(elem).find('.tarjeta-articulo__nombre > h3 > a').text().trim();
-                                            productUrl = $(elem).find('.tarjeta-articulo__nombre > h3 > a').attr('href');
+                                            productUrl = 'https://www.pccomponentes.com' + $(elem).find('.tarjeta-articulo__nombre > h3 > a').attr('href');
                                             productRating = $(elem).find('.rating-container > .rating-stars').attr('style');
-                                            numberOfRatings = $(elem).find('.tarjeta-articulo__extras > .total_valoration').text().trim();
-                                            productPrice = $(elem).find('.tarjeta-articulo__precios > .tarjeta-articulo__precio-actual').text().trim();
+                                            numberOfRatings = ($(elem).find('.tarjeta-articulo__extras > .total_valoration').text().trim()).replace(/[()]/g, '');
+                                            productPrice = ($(elem).find('.tarjeta-articulo__precios > .tarjeta-articulo__precio-actual').text().trim()).replace('€', '');
                                             return [2 /*return*/, {
                                                     index: index,
                                                     imageUrl: imageUrl,
@@ -218,9 +218,9 @@ var ParseRepository = /** @class */ (function () {
                                             imageUrl = $(elem).find('img').attr('src');
                                             productName = $(elem).find('span.title').text().trim();
                                             productUrl = $(elem).attr('href');
-                                            productRating = '';
-                                            numberOfRatings = '';
-                                            productPrice = $(elem).find('.search_price_discount_combined').text().trim();
+                                            productRating = 'NA';
+                                            numberOfRatings = 'NA';
+                                            productPrice = ($(elem).find('.search_price').children().remove().end().text()).replace('€', '');
                                             return [2 /*return*/, {
                                                     index: index,
                                                     imageUrl: imageUrl,
